@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+    // User defined exceptions here
     @ExceptionHandler(CustomerAlreadyExistsException.class)
     public ResponseEntity<ErrorResponseDto> handleCustomerAlreadyExistsException(CustomerAlreadyExistsException exception, WebRequest webRequest) {
         ErrorResponseDto errorResponseDto = new ErrorResponseDto(
@@ -32,5 +33,18 @@ public class GlobalExceptionHandler {
         );
         return new ResponseEntity<>(errorResponseDto,
                 HttpStatus.NOT_FOUND);
+    }
+
+    // Global exception handler
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponseDto> handleGlobalExceptions(Exception exception, WebRequest webRequest) {
+        ErrorResponseDto errorResponseDto = new ErrorResponseDto(
+                webRequest.getDescription(false),
+                HttpStatus.INTERNAL_SERVER_ERROR,
+                exception.getMessage(),
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(errorResponseDto,
+                HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
