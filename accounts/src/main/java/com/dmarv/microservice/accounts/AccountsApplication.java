@@ -28,7 +28,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
                         url = "https://www.apache.org/licenses/LICENSE-2.0"
                 )
         ),
-        externalDocs = @ExternalDocumentation(
+         externalDocs = @ExternalDocumentation(
                 description = "EasyBank Accounts Microservice REST API " +
                         "Documentation",
                 url = "httpss://oliveeb.com/swagger-ui/index.html"
