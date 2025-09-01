@@ -1,0 +1,41 @@
+services:
+  accounts:
+    image: "marvin4oliveeb/accounts:googlejib"
+    container_name: accounts-microservice
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - microservice-bank-network
+
+  loans:
+    image: "marvin4oliveeb/loans:googlejib"
+    container_name: loans-microservice
+    ports:
+      - "8090:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - microservice-bank-network
+
+  cards:
+    image: "marvin4oliveeb/cards:googlejib"
+    container_name: cards-microservice
+    ports:
+      - "9000:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - microservice-bank-network
+
+
+networks:
+  microservice-bank-network:
+    driver: "bridge"
