@@ -1,0 +1,11 @@
+build:
+  version: "2.0"
+
+accounts:
+  message: "Welcome to AQ testing for the Bank App"
+  contactDetails:
+    name: "Smaith Raya - QA Developer lead"
+    email: "qadevteam@gmail.com"
+  onCallSupport:
+    -(879) 555-1234
+    -(879) 523-1345
