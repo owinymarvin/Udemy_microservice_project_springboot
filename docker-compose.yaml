@@ -38,4 +38,5 @@ services:
 
 networks:
   microservice-bank-network:
+    name: "microservice-bank-network"
     driver: "bridge"
