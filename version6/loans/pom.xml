@@ -147,7 +147,7 @@
 				<version>3.4.6</version>
 				<configuration>
 					<to>
-						<image>marvin4oliveeb/${project.artifactId}:version1</image>
+						<image>marvin4oliveeb/${project.artifactId}:g-jib-v6</image>
 					</to>
 				</configuration>
 			</plugin>

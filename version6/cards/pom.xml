@@ -27,7 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>24</java.version>
+		<java.version>21</java.version>
 		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 	<dependencies>
@@ -145,7 +145,7 @@
 				<version>3.4.6</version>
 				<configuration>
 					<to>
-						<image>marvin4oliveeb/${project.artifactId}:version1</image>
+						<image>marvin4oliveeb/${project.artifactId}:g-jib-v6</image>
 					</to>
 				</configuration>
 			</plugin>
