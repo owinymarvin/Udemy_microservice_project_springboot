@@ -1,11 +1,15 @@
 server:
   port: 8071
 
+
+encrypt:
+  key: "APHJD&YG&*)#DJHA(*AGD(G(&&!@WG898123g9gsdyf078q73guaysgd0AWE"
+
+
 spring:
   application:
     name: "configserver"
   profiles:
-    # only works for local files ie /config or /file.
     # active: native
     active: git
   cloud:
@@ -20,3 +24,15 @@ spring:
         # native:
             # search-locations: "classpath:/config"
             # search-locations: "file:///home//timothy//Desktop//CODE//SPRINGBOOT//Udemy//config"
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
