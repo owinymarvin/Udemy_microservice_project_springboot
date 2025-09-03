@@ -1,0 +1,78 @@
+services:
+  rabbitmq:
+    image: rabbitmq:4-management
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    extends:
+      file: common-config.yaml
+      service: network-deploy-service
+
+
+  configserver:
+    image: "marvin4oliveeb/configserver:googlejib-s6"
+    container_name: configserver-microservice
+    ports:
+      - "8071:8071"
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    healthcheck:
+      test: "curl --fail --silent localhost:8071/actuator/health/readiness | grep UP ||
+       exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    extends:
+      file: common-config.yaml
+      service: micorservice-base-config
+
+
+  accounts:
+    image: "marvin4oliveeb/accounts:googlejib-s6"
+    container_name: accounts-microservice
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_APPLICATION_NAME: "accounts"
+    extends:
+      service: microservice-configure-config
+      file: common-config.yaml
+
+
+  loans:
+    image: "marvin4oliveeb/loans:googlejib-s6"
+    container_name: loans-microservice
+    ports:
+      - "8090:8080"
+    environment:
+      SPRING_APPLICATION_NAME: "loans"
+    extends:
+      service: microservice-configure-config
+      file: common-config.yaml
+
+
+  cards:
+    image: "marvin4oliveeb/cards:googlejib-s6"
+    container_name: cards-microservice
+    ports:
+      - "9000:8080"
+    environment:
+      SPRING_APPLICATION_NAME: "cards"
+    extends:
+      service: microservice-configure-config
+      file: common-config.yaml
+
+
+networks:
+  microservice-bank-network:
+    name: "microservice-bank-network"
+    driver: "bridge"
